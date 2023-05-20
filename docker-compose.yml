@@ -9,9 +9,9 @@ services:
     volumes:
       - ./frontend:/home/node/app
 
-  # backend:
-  #   build: .
-  #   ports:
-  #     - 3002:3000
-  #   volumes:
-  #     - ./backend:/home/node/app
+  backend:
+    build: .
+    ports:
+      - 3333:3333
+    volumes:
+      - ./backend:/home/node/app
