@@ -16,3 +16,13 @@ services:
       - 5555:5555
     volumes:
       - ./backend:/home/node/app
+
+  mobile:
+    build: .
+    ports:
+      - 19000:19000
+      - 19001:19001
+    volumes:
+      - ./mobile:/home/node/app
+    environment:
+      - REACT_NATIVE_PACKAGER_HOSTNAME=192.168.0.106
