@@ -8,6 +8,7 @@ services:
       - 3000
     volumes:
       - ./frontend:/home/node/app
+    network_mode: "host" 
 
   backend:
     build: .
@@ -16,13 +17,14 @@ services:
       - 5555
     volumes:
       - ./backend:/home/node/app
+    network_mode: "host" 
 
-  mobile:
-    build: .
-    ports:
-      - 19000:19000
-      - 19001:19001
-    volumes:
-      - ./mobile:/home/node/app
-    environment:
-      - REACT_NATIVE_PACKAGER_HOSTNAME=192.168.0.106
+  # mobile:
+  #   build: .
+  #   ports:
+  #     - 19000:19000
+  #     - 19001:19001
+  #   volumes:
+  #     - ./mobile:/home/node/app
+  #   environment:
+  #     - REACT_NATIVE_PACKAGER_HOSTNAME=192.168.0.106
