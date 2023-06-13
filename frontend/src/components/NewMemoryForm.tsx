@@ -22,16 +22,20 @@ export function NewMemoryForm() {
 
     let coverUrl = ''
 
+    const token = Cookie.get('token')
+
     if (fileToUpload) {
       const uploadFormData = new FormData()
       uploadFormData.set('file', fileToUpload)
 
-      const uploadResponse = await api.post('/upload', uploadFormData)
+      const uploadResponse = await api.post('/upload', uploadFormData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
       coverUrl = uploadResponse.data.fileUrl
     }
-
-    const token = Cookie.get('token')
 
     await api.post(
       '/memories',
@@ -51,7 +55,10 @@ export function NewMemoryForm() {
   }
 
   return (
-    <form onSubmit={handleCreateMemory} className="flex flex-1 flex-col gap-2">
+    <form
+      onSubmit={handleCreateMemory}
+      className="flex flex-1 flex-col gap-2  p-16"
+    >
       <div className="flex items-center gap-4">
         <label
           htmlFor="media"
